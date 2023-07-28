@@ -242,7 +242,7 @@ def main():
 		if os.path.exists(os.path.join(outpath, item)):
 			img_list.remove(item)
 			continue
-		cur_image = load_img(os.path.join(opt.init_img, item)).to(device)
+		cur_image = load_img(os.path.join(opt.init_img, item))
 		cur_image = transform(cur_image)
 		cur_image = cur_image.clamp(-1, 1)
 		init_image_list.append(cur_image)
@@ -281,7 +281,7 @@ def main():
 				tic = time.time()
 				all_samples = list()
 				for n in trange(niters, desc="Sampling"):
-					init_image = init_image_list[n]
+					init_image = init_image_list[n].to(device)
 					init_latent_generator, enc_fea_lq = vq_model.encode(init_image)
 					init_latent = model.get_first_stage_encoding(init_latent_generator)
 					text_init = ['']*init_image.size(0)
