@@ -239,9 +239,9 @@ def main():
 	img_list = copy.deepcopy(img_list_ori)
 	init_image_list = []
 	for item in img_list_ori:
-		if os.path.exists(os.path.join(outpath, item)):
-			img_list.remove(item)
-			continue
+		# if os.path.exists(os.path.join(outpath, item)):
+		# 	img_list.remove(item)
+		# 	continue
 		cur_image = load_img(os.path.join(opt.init_img, item))
 		cur_image = transform(cur_image)
 		cur_image = cur_image.clamp(-1, 1)
